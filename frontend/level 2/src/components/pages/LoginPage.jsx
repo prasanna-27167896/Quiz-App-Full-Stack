@@ -37,9 +37,9 @@ export default function LoginPage() {
   });
 
   return (
-    <div className="min-h-screen bg-base-200 flex items-center justify-center">
-      <div className="card w-96 bg-base-100 shadow-xl p-6">
-        <h2 className="text-3xl font-bold text-center text-primary mb-6">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
+      <div className="card w-full max-w-md bg-base-100 shadow-xl p-6 sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center text-primary mb-6">
           Login
         </h2>
         <form className="flex flex-col gap-4" onSubmit={formik.handleSubmit}>
@@ -82,7 +82,7 @@ export default function LoginPage() {
           <button type="submit" className="btn btn-primary w-full mt-2">
             {loading ? "Logging in..." : "Login"}
           </button>
-          {error && <p className="text-red-500">{error}</p>}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
         </form>
 
         <p className="text-sm text-center mt-4">

@@ -19,7 +19,6 @@ export default function QuestionPage() {
     activeQuestion,
     activeQuestionId,
     activeQuestionNum,
-    questions,
     totalQuestions,
     loading,
     error,
@@ -48,11 +47,10 @@ export default function QuestionPage() {
           })
         ).unwrap();
 
-        // Mark as answered after validation
         setIsAnswered(true);
       } catch (error) {
         console.error("Error validating answer", error);
-        setIsAnswered(true); // Still mark answered even on error
+        setIsAnswered(true);
       }
     },
     [activeQuestionId, dispatch, isAnswered, isValidatingAnswer]
@@ -69,7 +67,7 @@ export default function QuestionPage() {
       navigate(routes.protectedRoutes.result);
     } else {
       dispatch(activeNextQuestion());
-      setIsAnswered(false); // reset state
+      setIsAnswered(false);
       setUserSelectedOption(null);
     }
   }, [dispatch, isFinalQuestion, navigate]);
@@ -93,7 +91,7 @@ export default function QuestionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-base-200">
+    <div className="min-h-screen bg-base-200 flex flex-col">
       {/* Navbar */}
       <Navbar />
 
@@ -105,15 +103,15 @@ export default function QuestionPage() {
       ></progress>
 
       {/* Question Section */}
-      <div className="flex flex-col items-center py-12">
+      <div className="flex flex-col items-center flex-1 py-8 sm:py-12 px-4">
         {/* Counter */}
-        <div className="rounded-full bg-primary text-primary-content w-16 h-16 flex items-center justify-center text-lg font-bold -mt-9 mb-1">
+        <div className="rounded-full bg-primary text-primary-content w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center text-sm sm:text-lg font-bold -mt-9 mb-3">
           {activeQuestionNum}/{totalQuestions}
         </div>
 
         {/* Card */}
-        <div className="card w-[32rem] bg-base-100 shadow-xl p-8">
-          <h2 className="text-lg font-semibold text-center mb-6">
+        <div className="card w-full max-w-2xl bg-base-100 shadow-xl p-6 sm:p-8">
+          <h2 className="text-base sm:text-lg font-semibold text-center mb-6 break-words">
             {activeQuestion.question}
           </h2>
 
@@ -145,7 +143,6 @@ export default function QuestionPage() {
                   activeQuestion.answer_status === "right" &&
                   option.id === activeQuestion.correct_answer_id
                 ) {
-                  // Show correct answer even if user didn’t pick it
                   return "bg-success/20 border-success";
                 }
 
@@ -161,7 +158,7 @@ export default function QuestionPage() {
                 <button
                   key={option.id}
                   onClick={() => handleOptionClick(option)}
-                  className={`w-full px-4 py-3 rounded-lg border text-left transition-all ${getOptionStyle()} ${getCursorStyle()}`}
+                  className={`w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg border text-left transition-all text-sm sm:text-base ${getOptionStyle()} ${getCursorStyle()}`}
                   disabled={isValidatingAnswer}
                 >
                   {option.value}
