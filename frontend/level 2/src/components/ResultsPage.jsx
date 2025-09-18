@@ -49,9 +49,6 @@ const ResultPage = () => {
   }, [navigate]);
 
   const displayQuestions = useMemo(() => {
-    if (noOfInCorrectAnswers === 0) {
-      return correctAnswers;
-    }
     return displayCorrectAnswers ? correctAnswers : inCorrectAnswers;
   }, [displayCorrectAnswers, correctAnswers, inCorrectAnswers]);
 
