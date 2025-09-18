@@ -30,7 +30,7 @@ const ResultPage = () => {
     if (status && !noOfInCorrectAnswers) {
       setDisplayCorrectAnswers(true);
     }
-  }, [noOfCorrectAnswers, status]);
+  }, [noOfInCorrectAnswers, status]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
